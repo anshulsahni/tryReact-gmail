@@ -1,14 +1,16 @@
 import React from 'react';
-import { userRouterHistory } from 'react-router';
+import autobind from 'autobind-decorator';
+import { useRouterHistory } from 'react-router';
 import { createHashHistory } from 'history';
 
-var appHistory = userRouterHistory(createHashHistory)({ queryKey: false }); 
 
+var appHistory = useRouterHistory(createHashHistory)({ queryKey: false });
+
+@autobind
 class MailSummary extends React.Component {
 
   constructor() {
     super();
-    console.log(this);
   }
 
   renderSummary() {
@@ -16,7 +18,7 @@ class MailSummary extends React.Component {
   }
 
   redirectToMail(event) {
-    appHistory.push('/mail/'+this.props.mail.key);
+    appHistory.push('/mail/' + this.props.mail.key);
   }
 
   renderRecepients(recipients) {

@@ -25,7 +25,7 @@ class Routes extends React.Component {
             <Route path= '/sent' component= { Sent } />
             <Route path= '/starred' component= { Starred } />
             <Router path= '/search/:query' component= { Search } />
-            <ROuter path= '/mail/:mailKey' component= { Mail } />
+            <Router path= '/mail/:mailKey' component= { Mail } />
             <Redirect from='/' to='/inbox' />
         </Router>
       );
