@@ -3,6 +3,8 @@ import autobind from 'autobind-decorator';
 import { useRouterHistory } from 'react-router';
 import { createHashHistory } from 'history';
 
+import renderDate from '../../helpers/renderDate';
+
 
 var appHistory = useRouterHistory(createHashHistory)({ queryKey: false });
 
@@ -35,22 +37,26 @@ class MailSummary extends React.Component {
     return names;
   }
 
+  handleOnClickStarred() {
+    this.props.toggleStarredMail(this.props.mail.key);
+  }
+
   render() {
     return(
-        <tr onClick={this.redirectToMail}>
-          <td className='mdl-data-table__cell--non-numeric'>
+        <tr>
+          <td className='mdl-data-table__cell--non-numeric' onClick = { this.handleOnClickStarred }>
             <i className='material-icons'>
-              {this.props.mail.starred ? 'star' : 'star_border'}
+              { this.props.mail.starred ? 'star' : 'star_border' }
             </i>
           </td>
           <td className='mdl-data-table__cell--non-numeric'>
-            <strong>{this.props.mail.to ? this.renderRecepients(this.props.mail.to) : this.props.mail.from.name}</strong>
+            <strong>{ this.props.mail.to ? this.renderRecepients(this.props.mail.to) : this.props.mail.from.name }</strong>
           </td>
           <td className='mdl-data-table__cell--non-numeric'>
-            {this.renderSummary()}
+            { this.renderSummary() }
           </td>
           <td className='mdl-data-table__cell--non-numeric'>
-            {this.props.mail.sendingDate}
+            { renderDate(this.props.mail.sendingDate) }
           </td>
         </tr>
       );
