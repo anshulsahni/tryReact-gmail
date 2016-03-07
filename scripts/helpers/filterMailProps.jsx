@@ -1,7 +1,7 @@
 import _ from 'underscore';
 
 //helper function used by mail folder components to filter the mail properties to be passed on to maillist
-filterMailProps(mailList,properties) {
+function filterMailProps(mailList,properties) {
   var mailsWithFilteredProps= _.map(mailList,(mail)=> {
     var filteredObject= {};
     _.each(properties,(prop)=> {
