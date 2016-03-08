@@ -1,3 +1,4 @@
 .mail-list-table { width: 800px; }
 .material-icons { cursor: default; }
 .hidden { display: none !important; }
+.bold { font-weight: 900; }

@@ -1,5 +1,6 @@
 import React from 'react';
 import Rebase from 're-base';
+import _ from 'underscore';
 
 import Body from './Body';
 import From from './From';
@@ -17,15 +18,21 @@ class Mail extends React.Component {
       mail:{},
       fetchingData: true
     };
-  } 
+  }
 
-  componentDidMount() {
-    
+  markMailAsRead() {
+    var mail = _.clone(this.state.mail);
+    mail.read = true;
+    this.setState({ 'mail' : mail });
+  }
+
+  componentDidMount() {    
     this.firebaseMailRef = firebaseRef.syncState('mails/' + this.props.params.mailKey, {
       context: this,
       state: 'mail',
       then: (data) => {
-        this.setState({ fetchingData: false })
+        this.setState({ fetchingData: false });
+        this.markMailAsRead();
       }
     });
   }

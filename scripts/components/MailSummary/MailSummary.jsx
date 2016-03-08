@@ -38,7 +38,7 @@ class MailSummary extends React.Component {
   }
 
   handleOnClickStarred() {
-    this.props.toggleStarredMail(this.props.mail.key);
+    this.props.toggleMailProperty(this.props.mail.key,'starred');
   }
 
   render() {
@@ -50,7 +50,9 @@ class MailSummary extends React.Component {
             </i>
           </td>
           <td className='mdl-data-table__cell--non-numeric' onClick = { this.redirectToMail } >
-            <strong>{ this.props.mail.inFolder === 'INBOX' ? this.props.mail.from.name : 'To: ' + this.renderRecepients(this.props.mail.to) }</strong>
+            <span className = { this.props.mail.read ? '' : 'bold' } >
+              { this.props.mail.inFolder === 'INBOX' ? this.props.mail.from.name : 'To: ' + this.renderRecepients(this.props.mail.to) }
+            </span>
           </td>
           <td className='mdl-data-table__cell--non-numeric' onClick = { this.redirectToMail } >
             { this.renderSummary() }

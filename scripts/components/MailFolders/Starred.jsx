@@ -32,10 +32,10 @@ class Starred extends React.Component {
     this.mailsToBePassed = [];
   }
 
-  toggleStarredMail(mailKey) {
+  toggleMailProperty(mailKey,prop) {
     var mails = _.clone(this.state.mails);
     var index = _.findIndex(mails,{ key: mailKey });
-    mails[index].starred = mails[index].starred?false:true;
+    mails[index].starred = mails[index][prop] ? false: true;
     this.setState({ 'mails': mails });
   }
 
@@ -47,7 +47,7 @@ class Starred extends React.Component {
     return(
         <MailList 
           mailList = {this.mailsToBePassed} 
-          toggleStarredMail = { this.toggleStarredMail } 
+          toggleMailProperty = { this.toggleMailProperty }
           fetchingData = { this.state.fetchingData }
         />
       );

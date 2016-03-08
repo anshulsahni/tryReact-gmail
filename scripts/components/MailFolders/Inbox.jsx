@@ -36,10 +36,10 @@ class Inbox extends React.Component {
     this.mailsToBePassed = sortMails(nextState.mails);
   }
 
-  toggleStarredMail(mailKey) {
+  toggleMailProperty(mailKey,prop) {
     var mails = _.clone(this.state.mails);
     var index = _.findIndex(mails,{ key: mailKey });
-    mails[index].starred = mails[index].starred?false:true;
+    mails[index].starred = mails[index][prop] ? false: true;
     this.setState({ 'mails': mails });
   }
 
@@ -47,8 +47,8 @@ class Inbox extends React.Component {
     return(
         <div>
           <MailList 
-            mailList = { this.mailsToBePassed } 
-            toggleStarredMail = { this.toggleStarredMail } 
+            mailList = { this.mailsToBePassed }
+            toggleMailProperty = { this.toggleMailProperty }
             fetchingData = { this.state.fetchingData }
           />
         </div>

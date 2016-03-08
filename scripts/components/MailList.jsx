@@ -29,15 +29,13 @@ class MailList extends React.Component {
           <MailSummary
             key= { key }
             mail= { mailItem }
-            toggleStarredMail= { this.props.toggleStarredMail }
+            toggleMailProperty= { this.props.toggleMailProperty }
           />
         );
     });
     return mailSummaries;
   }
-
-
-
+  
   render() {
     return(
         <table className='mdl-data-table mdl-js-data-table mdl-shadow--2dp mail-list-table'>
