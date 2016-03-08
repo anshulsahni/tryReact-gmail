@@ -1,11 +1,14 @@
 import React from 'react';
 import Rebase from 're-base';
+import _ from 'underscore';
+import autobind from 'autobind-decorator';
 
 import sortMails from '../../helpers/sortMails';
 import MailList from '../MailList';
 
 var firebaseRef = Rebase.createClass('https://gmails.firebaseio.com/');
 
+@autobind
 class Starred extends React.Component {
 
   constructor() {
