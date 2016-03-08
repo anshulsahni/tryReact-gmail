@@ -19,14 +19,14 @@ class Routes extends React.Component {
 
   render() {
     return (
-        <Router history={ appHistory }>
-            <Route path= '/inbox' component= { Inbox } />
-            <Route path= '/drafts' component= { Drafts } />
-            <Route path= '/sent' component= { Sent } />
-            <Route path= '/starred' component= { Starred } />
-            <Router path= '/search/:query' component= { Search } />
-            <Router path= '/mail/:mailKey' component= { Mail } />
-            <Redirect from='/' to='/inbox' />
+        <Router history={ appHistory } >
+          <Route path= '/inbox' component= { Inbox } />
+          <Route path= '/drafts' component= { Drafts } />
+          <Route path= '/sent' component= { Sent } />
+          <Route path= '/starred' component= { Starred } />
+          <Route path= '/search/:query' component= { Search } />
+          <Route path= '/mail/:mailKey' component= { Mail } />
+          <Redirect from='/' to='/inbox' />
         </Router>
       );
   }

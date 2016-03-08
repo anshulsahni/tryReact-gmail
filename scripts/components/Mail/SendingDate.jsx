@@ -1,5 +1,7 @@
 import React from 'react';
 
+import renderDate from '../../helpers/renderDate';
+
 class SendingDate extends React.Component {
 
   constructor() {
@@ -9,7 +11,7 @@ class SendingDate extends React.Component {
   render() {
     return(
         <p>
-          Sent At : {this.props.date}
+          Sent On : { renderDate(this.props.date) }
         </p>
       );
   }

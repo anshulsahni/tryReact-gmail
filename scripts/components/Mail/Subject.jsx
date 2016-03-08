@@ -9,7 +9,7 @@ class Subject extends React.Component {
   render() {
     return(
         <p>
-          {this.props.content}
+          Reg: {this.props.subject}
         </p>
       );
   }

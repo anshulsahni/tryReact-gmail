@@ -19,7 +19,7 @@ class MailSummary extends React.Component {
     return this.props.mail.subject.substring(0,20).trim() + '...';
   }
 
-  redirectToMail(event) {
+  redirectToMail() {
     appHistory.push('/mail/' + this.props.mail.key);
   }
 
@@ -44,18 +44,18 @@ class MailSummary extends React.Component {
   render() {
     return(
         <tr>
-          <td className='mdl-data-table__cell--non-numeric' onClick = { this.handleOnClickStarred }>
-            <i className='material-icons'>
+          <td className = 'mdl-data-table__cell--non-numeric' >
+            <i className = 'material-icons' onClick = { this.handleOnClickStarred } >
               { this.props.mail.starred ? 'star' : 'star_border' }
             </i>
           </td>
-          <td className='mdl-data-table__cell--non-numeric'>
+          <td className='mdl-data-table__cell--non-numeric' onClick = { this.redirectToMail } >
             <strong>{ this.props.mail.to ? this.renderRecepients(this.props.mail.to) : this.props.mail.from.name }</strong>
           </td>
-          <td className='mdl-data-table__cell--non-numeric'>
+          <td className='mdl-data-table__cell--non-numeric' onClick = { this.redirectToMail } >
             { this.renderSummary() }
           </td>
-          <td className='mdl-data-table__cell--non-numeric'>
+          <td className='mdl-data-table__cell--non-numeric' onClick = { this.redirectToMail } >
             { renderDate(this.props.mail.sendingDate) }
           </td>
         </tr>

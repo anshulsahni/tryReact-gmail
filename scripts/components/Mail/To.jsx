@@ -8,19 +8,23 @@ class To extends React.Component {
   }
 
   renderRecipients() {
+    var key=-1;
     var recipientsMarkup = _.map(this.props.tos,(to) => {
+      key++;
       return (
-          <p>
+          <span key={ key }>
             {to.name} &lt;{to.email}&gt;
-          </p>
+          </span>
         );
     });
-    return recipientsMarkup.join(', ');
+    return recipientsMarkup;
   }
 
   render() {
+    console.log(this.renderRecipients());
     return (
         <div>
+          <span style={{ fontWeight : 900 }}>To:</span>
           {this.renderRecipients()}
         </div>
       );

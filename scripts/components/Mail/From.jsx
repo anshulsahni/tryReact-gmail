@@ -9,7 +9,9 @@ class From extends React.Component {
   render() {
     return (
       <p>
-        {this.props.name} &lt;{this.props.email}&gt;
+        From: 
+        {this.props.from ? this.props.from.name : ''} 
+        &lt;{this.props.from ? this.props.from.email : ''}&gt;
       </p>
     );
   }
