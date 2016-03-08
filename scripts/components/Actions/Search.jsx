@@ -25,15 +25,15 @@ class Search extends React.Component {
     this.mailsToBePassed=[];
   }
 
-  toggleStarredMail(mailKey) {
+  toggleMailProperty(mailKey,prop) {
     var mails = _.clone(this.state.mails);
     var index = _.findIndex(mails,{ key: mailKey });
-    mails[index].starred = mails[index].starred?false:true;
+    mails[index].starred = mails[index][prop] ? false: true;
     this.setState({ 'mails': mails });
   }
 
   componentWillUpdate(nextProps,nextState) {
-    var queryRegex = new RegExp(this.props.params.query,'g');    
+    var queryRegex = new RegExp(nextProps.params.query,'g');    
     this.mailsToBePassed = _.filter(nextState.mails,(mail) => {
 
       var to = mail.to;
@@ -56,7 +56,7 @@ class Search extends React.Component {
     });
   }
 
-  componentWillUnMount() {
+  componentWillUnmount() {
     firebaseRef.removeBinding(this.firebaseMailsRef);
   }
 
@@ -65,7 +65,7 @@ class Search extends React.Component {
         <MailList 
           mailList = {this.mailsToBePassed}
           fetchingData = { this.state.fetchingData }
-          toggleStarredMail = { this.toggleStarredMail }
+          toggleMailProperty = { this.toggleMailProperty }
         />
       );
   }
