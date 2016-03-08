@@ -1,7 +1,7 @@
 import React from 'react';
 import Rebase from 're-base';
 
-import sortedFilteredMails from '../../helpers/sortedFilteredMails';
+import sortMails from '../../helpers/sortMails';
 import MailList from '../MailList';
 
 var firebaseRef = Rebase.createClass('https://gmails.firebaseio.com/');
@@ -37,8 +37,7 @@ class Sent extends React.Component {
   }
 
   componentWillUpdate(nextProps,nextState) {
-    var mailFilterProps = [ 'starred','to','subject','sendingDate','key' ];
-    this.mailsToBePassed = sortedFilteredMails(nextState.mails,mailFilterProps);
+    this.mailsToBePassed = sortMails(nextState.mails);
   }
 
 
