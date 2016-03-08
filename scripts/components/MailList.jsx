@@ -11,6 +11,18 @@ class MailList extends React.Component {
 
   renderMailSummaries() {
     var key = -1;
+    if(this.props.mailList.length === 0 && this.props.fetchingData === false) {
+      return (
+          <tr>
+            <td colSpan = '4' >
+              <center>
+                <h3>No Mails Found</h3>
+              </center>
+            </td>
+          </tr>
+        );
+    }
+
     var mailSummaries = _.map(this.props.mailList,(mailItem) => {
       key++;
       return (
