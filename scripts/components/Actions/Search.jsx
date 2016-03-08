@@ -1,11 +1,15 @@
 import React from 'react';
 import Rebase from 're-base';
 import _ from 'underscore';
+import autobind from 'autobind-decorator';
 
 import MailList from '../MailList';
+import changeMailProperty from '../../helpers/changeMailProperty';
+import changeAllMailsProperty from '../../helpers/changeAllMailsProperty';
 
 var firebaseRef = Rebase.createClass('https://gmails.firebaseio.com/');
 
+@autobind
 class Search extends React.Component {
 
   constructor() {
@@ -26,10 +30,13 @@ class Search extends React.Component {
   }
 
   toggleMailProperty(mailKey,prop) {
-    var mails = _.clone(this.state.mails);
-    var index = _.findIndex(mails,{ key: mailKey });
-    mails[index].starred = mails[index][prop] ? false: true;
+    var mails = changeMailProperty(this.state.mails,mailKey,prop);
     this.setState({ 'mails': mails });
+  }
+
+  markAllMailsRead() {
+    var mails = changeAllMailsProperty(this.state.mails,{ read : true });
+    this.setState({ 'mails' : mails});
   }
 
   componentWillUpdate(nextProps,nextState) {
@@ -66,6 +73,7 @@ class Search extends React.Component {
           mailList = {this.mailsToBePassed}
           fetchingData = { this.state.fetchingData }
           toggleMailProperty = { this.toggleMailProperty }
+          markAllMailsRead = { this.markAllMailsRead }
         />
       );
   }

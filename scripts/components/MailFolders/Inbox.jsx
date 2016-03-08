@@ -5,6 +5,7 @@ import autobind from 'autobind-decorator';
 
 import sortMails from '../../helpers/sortMails';
 import changeMailProperty from '../../helpers/changeMailProperty';
+import changeAllMailsProperty from '../../helpers/changeAllMailsProperty';
 import MailList from '../MailList';
 
 var firebaseRef = Rebase.createClass('https://gmails.firebaseio.com/');
@@ -42,6 +43,11 @@ class Inbox extends React.Component {
     this.setState({ 'mails': mails });
   }
 
+  markAllMailsRead() {
+    var mails = changeAllMailsProperty(this.state.mails,{ read : true });
+    this.setState({ 'mails' : mails});
+  }
+
   render() {
     return(
         <div>
@@ -49,6 +55,7 @@ class Inbox extends React.Component {
             mailList = { this.mailsToBePassed }
             toggleMailProperty = { this.toggleMailProperty }
             fetchingData = { this.state.fetchingData }
+            markAllMailsRead = { this.markAllMailsRead }
           />
         </div>
       );
