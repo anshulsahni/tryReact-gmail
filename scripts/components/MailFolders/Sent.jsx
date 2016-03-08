@@ -33,9 +33,7 @@ class Sent extends React.Component {
   }
 
   toggleMailProperty(mailKey,prop) {
-    var mails = _.clone(this.state.mails);
-    var index = _.findIndex(mails,{ key: mailKey });
-    mails[index].starred = mails[index][prop] ? false: true;
+    var mails = changeMailProperty(this.state.mails,mailKey,prop);
     this.setState({ 'mails': mails });
   }
 

@@ -4,6 +4,8 @@ import _ from 'underscore';
 import autobind from 'autobind-decorator';
 
 import sortMails from '../../helpers/sortMails';
+import changeMailProperty from '../../helpers/changeMailProperty';
+
 import MailList from '../MailList';
 
 var firebaseRef = Rebase.createClass('https://gmails.firebaseio.com/');
@@ -33,9 +35,7 @@ class Drafts extends React.Component {
   }
 
   toggleMailProperty(mailKey,prop) {
-    var mails = _.clone(this.state.mails);
-    var index = _.findIndex(mails,{ key: mailKey });
-    mails[index].starred = mails[index][prop] ? false: true;
+    var mails = changeMailProperty(this.state.mails,mailKey,prop);
     this.setState({ 'mails': mails });
   }
 

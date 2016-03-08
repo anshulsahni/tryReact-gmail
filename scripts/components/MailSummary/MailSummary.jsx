@@ -38,7 +38,8 @@ class MailSummary extends React.Component {
   }
 
   handleOnClickStarred() {
-    this.props.toggleMailProperty(this.props.mail.key,'starred');
+    var changedVal = !this.props.mail.starred;
+    this.props.toggleMailProperty(this.props.mail.key,{ 'starred': changedVal });
   }
 
   render() {
