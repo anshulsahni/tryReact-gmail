@@ -13,16 +13,18 @@ class MailList extends React.Component {
     var key = -1;
     var mailSummaries = _.map(this.props.mailList,(mailItem) => {
       key++;
-
       return (
           <MailSummary
-            key= {key}
-            mail= {mailItem}
+            key= { key }
+            mail= { mailItem }
+            toggleStarredMail= { this.props.toggleStarredMail }
           />
         );
     });
     return mailSummaries;
   }
+
+
 
   render() {
     return(
@@ -36,7 +38,14 @@ class MailList extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.renderMailSummaries()}
+            <tr className = { this.props.fetchingData ? '' : 'hidden' }>
+              <td colSpan = '4'>
+                <center>
+                  <div className='mdl-progress mdl-js-progress mdl-progress__indeterminate'></div>
+                </center>
+              </td>
+            </tr>
+            { this.renderMailSummaries() }
           </tbody>
         </table>
       );
