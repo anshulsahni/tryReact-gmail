@@ -9,24 +9,12 @@ class SideBar extends React.Component {
 
   render() {
     return(
-          <div className='mdl-grid'>
-            <div clasName='mdl-cell mdl-cell--12-col'>
-              <ul className='mdl-list'>
-                <li className='mdl-list__item'>
-                  <a href='#/inbox' className='mdl-list__item-primary-content'>Inbox</a>
-                </li>
-                <li className='mdl-list__item'>
-                  <a href='#/sent' className='mdl-list__item-primary-content'>Sent</a>
-                </li>
-                <li className='mdl-list__item'>
-                  <a href='#/drafts' className='mdl-list__item-primary-content'>Drafts</a>
-                </li>
-                <li className='mdl-list__item'>
-                  <a href='#/starred' className='mdl-list__item-primary-content'>Starred</a>
-                </li>
-              </ul>
-            </div>
-          </div>
+        <nav className='mdl-navigation'>
+          <a href = '#/inbox' className = 'mdl-navigation__link'>Inbox</a>
+          <a href = '#/sent' className = 'mdl-navigation__link'>Sent</a>
+          <a href = '#/drafts' className = 'mdl-navigation__link'>Drafts</a>
+          <a href = '#/starred' className = 'mdl-navigation__link'>Starred</a>
+        </nav>
       );
   }
 }

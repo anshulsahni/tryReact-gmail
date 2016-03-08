@@ -12,26 +12,24 @@ class App extends React.Component {
 
   render() {
     return(
-        <div>
-          <div className='mdl-grid'>
-            <div className='mdl-cell mdl-cell--12-col'>
-              <div className='mdl-grid'>
-                <div className='mdl-cell mdl-cell--3'></div>
-                <div className='mdl-cell mdl-cell--6'>
-                  <SearchBar />
-                </div>
-                <div className='mdl-cell mdl-cell--3'></div>
-              </div>
+        <div className = 'mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header'>
+          <header className = 'mdl-layout__header'>
+            <div className = 'mdl-layout__header-row'>
+              <div className = 'mdl-layout-spacer'></div>
+              <SearchBar />
             </div>
+          </header>
+          <div className = 'mdl-layout__drawer'>
+            <span className = 'mdl-layout-title'>aGmail</span>
+            <SideBar />
           </div>
-          <div className='mdl-grid'>
-            <div className='mdl-cell mdl-cell--3-col'>
-              <SideBar />
+          <main className = 'mdl-layout__content'>
+            <div className = 'page-content'>
+              <center>
+                <Routes />
+              </center>
             </div>
-            <div className='mdl-cell mdl-cell--9-col'>
-              <Routes />
-            </div>
-          </div>
+          </main>
         </div>
       );
   }
