@@ -1,14 +1,72 @@
 import React from 'react';
+import Rebase from 're-base';
+import _ from 'underscore';
+
+import MailList from '../MailList';
+
+var firebaseRef = Rebase.createClass('https://gmails.firebaseio.com/');
 
 class Search extends React.Component {
 
   constructor() {
     super();
+    this.state = {
+      mails:[],
+      fetchingData: true
+    }
+    this.firebaseMailsRef = firebaseRef.syncState('mails',{
+      context: this,
+      state: 'mails',
+      asArray: true,
+      then: (data) => {
+        this.setState({ fetchingData: false })
+      }
+    })
+    this.mailsToBePassed=[];
+  }
+
+  toggleStarredMail(mailKey) {
+    var mails = _.clone(this.state.mails);
+    var index = _.findIndex(mails,{ key: mailKey });
+    mails[index].starred = mails[index].starred?false:true;
+    this.setState({ 'mails': mails });
+  }
+
+  componentWillUpdate(nextProps,nextState) {
+    var queryRegex = new RegExp(this.props.params.query,'g');    
+    this.mailsToBePassed = _.filter(nextState.mails,(mail) => {
+
+      var to = mail.to;
+      var from = mail.from;
+      var subject = mail.subject;
+      var body = mail.body;
+
+      for(var i in to) {
+        if(queryRegex.test(to[i].name) || queryRegex.test(to[i].email))
+          return true;
+      }
+
+      if(queryRegex.test(from.name) || queryRegex.test(from.email) || queryRegex.test(subject) || queryRegex.test(body)){
+        return true;
+      }
+    });
+
+    this.mailsToBePassed = _.sortBy(this.mailsToBePassed, (mail) => {
+      return -1 * mail.sendingDate ;
+    });
+  }
+
+  componentWillUnMount() {
+    firebaseRef.removeBinding(this.firebaseMailsRef);
   }
 
   render() {
     return(
-        <h1>Search query :{this.props.params.query}</h1>
+        <MailList 
+          mailList = {this.mailsToBePassed}
+          fetchingData = { this.state.fetchingData }
+          toggleStarredMail = { this.toggleStarredMail }
+        />
       );
   }
 }
