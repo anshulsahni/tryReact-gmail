@@ -5,7 +5,7 @@ function changeAllMailProperty(mails,prop) {
   return _.map(mails, (mail) => {
     var clonedMail = _.clone(mail)
     clonedMail[key] = prop[key];
-    delete clone['key'];
+    delete clonedMail['key'];
     return clonedMail;
   })
 }
