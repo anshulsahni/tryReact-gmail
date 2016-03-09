@@ -5,6 +5,7 @@ function changeMailProperty(mails,mailKey,prop) {
   var key = _.keys(prop)[0];
   var index = _.findIndex(clonedMails,{ key: mailKey });
   clonedMails[index][key] = prop[key];
+  delete clonedMails[index]['key'];
   return clonedMails;
 }
 
