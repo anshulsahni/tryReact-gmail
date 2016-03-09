@@ -7,7 +7,7 @@ import Rebase from 're-base';
 import Body from './Body';
 import To from './To';
 import Subject from './Subject';
-import Send from './Send';
+import ActionButton from './ActionButton';
 
 var firebaseRef = Rebase.createClass('https://gmails.firebaseio.com/');
 
@@ -27,7 +27,7 @@ class Compose extends React.Component {
     return linkState(this,prop);
   }
 
-  send() {
+  sendMailIn(folder) {
     var from = {
       name: 'Anshul Sahni',
       'email': 'anshul_sahni@live.com'
@@ -46,7 +46,7 @@ class Compose extends React.Component {
       subject: this.state.subject,
       read: false,
       starred: false,
-      inFolder: 'SENT',
+      inFolder: folder,
       sendingDate: new Date().getTime(),
       to: to,
       from: from
@@ -66,13 +66,28 @@ class Compose extends React.Component {
     });
   }
 
+  send() {
+    this.sendMailIn('SENT');
+  }
+
+  save() {
+    this.sendMailIn('DRAFTS');
+  }
+
   render() {
     return(
         <div>
-          <To linkState = { this.linkState }/>
-          <Subject linkState = { this.linkState }/>
-          <Body linkState = { this.linkState }/>
-          <Send send = { this.send }/>
+          <To linkState = { this.linkState } />
+          <Subject linkState = { this.linkState } />
+          <Body linkState = { this.linkState } />
+          <ActionButton 
+            onClickHandler = { this.send }
+            value = 'SEND'
+          />
+          <ActionButton
+            onClickHandler = { this.save }
+            value = 'SAVE'
+          />
         </div>
       );
   }
