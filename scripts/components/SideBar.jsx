@@ -10,6 +10,7 @@ class SideBar extends React.Component {
   render() {
     return(
         <nav className='mdl-navigation'>
+          <a href = '#/compose' className = 'mdl-navigation__link'>Compose</a>
           <a href = '#/inbox' className = 'mdl-navigation__link'>Inbox</a>
           <a href = '#/sent' className = 'mdl-navigation__link'>Sent</a>
           <a href = '#/drafts' className = 'mdl-navigation__link'>Drafts</a>

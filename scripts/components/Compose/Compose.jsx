@@ -76,18 +76,29 @@ class Compose extends React.Component {
 
   render() {
     return(
-        <div>
-          <To linkState = { this.linkState } />
-          <Subject linkState = { this.linkState } />
-          <Body linkState = { this.linkState } />
-          <ActionButton 
-            onClickHandler = { this.send }
-            value = 'SEND'
-          />
-          <ActionButton
-            onClickHandler = { this.save }
-            value = 'SAVE'
-          />
+        <div className = 'mdl-card mdl-shadow--2dp'>
+          <div className = 'mdl-card__title'>
+            <h2 className = 'mdl-card__title-text'>Compose Mail</h2>
+          </div>
+          <div className = 'mdl-card__actions mdl-card--border'>
+            <To linkState = { this.linkState } />
+          </div>
+          <div className = 'mdl-card__actions mdl-card--border'>
+            <Subject linkState = { this.linkState } />
+          </div>
+          <div className = 'mdl-card__actions mdl-card--border'>
+            <Body linkState = { this.linkState } />
+          </div>
+          <div className = 'mdl-card__actions mdl-card--border'>
+            <ActionButton 
+              onClickHandler = { this.send }
+              value = 'SEND'
+            />
+            <ActionButton
+              onClickHandler = { this.save }
+              value = 'SAVE'
+            />
+          </div>
         </div>
       );
   }
