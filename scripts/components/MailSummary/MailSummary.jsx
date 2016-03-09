@@ -1,5 +1,6 @@
 import React from 'react';
 import autobind from 'autobind-decorator';
+import _ from 'underscore';
 import { useRouterHistory } from 'react-router';
 import { createHashHistory } from 'history';
 
