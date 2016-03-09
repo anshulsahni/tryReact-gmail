@@ -8,6 +8,7 @@ import Drafts from './MailFolders/Drafts';
 import Starred from './MailFolders/Starred';
 import Search from './Actions/Search';
 import Mail from './Mail/Mail';
+import Compose from './Compose/Compose';
 
 const appHistory = useRouterHistory(createHashHistory)({ queryKey: false });
 
@@ -26,6 +27,7 @@ class Routes extends React.Component {
           <Route path= '/starred' component= { Starred } />
           <Route path= '/search/:query' component= { Search } />
           <Route path= '/mail/:mailKey' component= { Mail } />
+          <Route path= '/compose' component= { Compose } />
           <Redirect from='/' to='/inbox' />
         </Router>
       );
