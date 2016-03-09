@@ -24,17 +24,8 @@ class MailSummary extends React.Component {
   }
 
   renderRecepients(recipients) {
-    var names = '';
-    if(recipients[0]) {
-      names += recipients[0].name;
-      if(recipients[1]) {
-        names += ',' + recipients[1].name;
-        if(recipients[2]) {
-          names += '...';
-        }
-      }
-    }
-    return names;
+    var firstTwoNames = _.map(_.first(recipients,2),'name');
+    return firstTwoNames > 2 ? firstTwoNames.join(',') + '...' : firstTwoNames.join(',');
   }
 
   handleOnClickStarred() {
