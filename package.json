@@ -17,6 +17,7 @@
     "re-base": "^1.5.1",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
+    "react-link-state": "^0.1.2",
     "react-router": "^2.0.0",
     "underscore": "^1.8.3"
   },
